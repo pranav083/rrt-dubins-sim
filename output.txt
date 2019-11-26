@@ -1,0 +1,125 @@
+mighty@ideapad:~/study/intership/rrt-star-dubins-sim$ ./bin/motion-planning-demo 
+######################################
+# POSITION BACK TRACKING STARTED RRT##
+######################################
+Point no.:  0  Position   355.053 , 362.232 
+
+Point no.:  1  Position   346.053 , 360.232 
+
+Point no.:  2  Position   337.053 , 358.232 
+
+Point no.:  3  Position   328.053 , 356.232 
+
+Point no.:  4  Position   319.053 , 354.232 
+
+Point no.:  5  Position   310.053 , 352.232 
+
+Point no.:  6  Position   301.053 , 350.232 
+
+Point no.:  7  Position   292.053 , 348.232 
+
+Point no.:  8  Position   283.053 , 346.232 
+
+Point no.:  9  Position   277.951 , 355.044 
+
+Point no.:  10  Position   276.056 , 362.828 
+
+Point no.:  11  Position   267.056 , 360.828 
+
+Point no.:  12  Position   264.428 , 368.886 
+
+Point no.:  13  Position   260.552 , 377.361 
+
+Point no.:  14  Position   256.804 , 385.796 
+
+Point no.:  15  Position   251.931 , 394.551 
+
+Point no.:  16  Position   250.665 , 402.087 
+
+Point no.:  17  Position   239.814 , 391.975 
+
+Point no.:  18  Position   230.814 , 389.975 
+
+Point no.:  19  Position   221.814 , 373.975 
+
+Point no.:  20  Position   218.74 , 382.19 
+
+Point no.:  21  Position   209.74 , 380.19 
+
+Point no.:  22  Position   200.74 , 364.19 
+
+Point no.:  23  Position   191.74 , 348.19 
+
+Point no.:  24  Position   182.467 , 357.103 
+
+Point no.:  25  Position   173.467 , 341.103 
+
+Point no.:  26  Position   164.467 , 325.103 
+
+Point no.:  27  Position   162.172 , 333.039 
+
+Point no.:  28  Position   155.467 , 342.142 
+
+Point no.:  29  Position   156.682 , 324.789 
+
+Point no.:  30  Position   147.682 , 308.789 
+
+Point no.:  31  Position   138.682 , 292.789 
+
+Point no.:  32  Position   129.682 , 276.789 
+
+Point no.:  33  Position   120.682 , 260.789 
+
+Point no.:  34  Position   111.682 , 244.789 
+
+Point no.:  35  Position   105.226 , 253.861 
+
+Point no.:  36  Position   105.77 , 245.576 
+
+Point no.:  37  Position   106.046 , 237.935 
+
+Point no.:  38  Position   106.565 , 229.71 
+
+Point no.:  39  Position   107.172 , 221.268 
+
+Point no.:  40  Position   108.77 , 209.978 
+
+Point no.:  41  Position   110.467 , 198.329 
+
+Point no.:  42  Position   101.467 , 182.329 
+
+Point no.:  43  Position   92.4667 , 180.329 
+
+Point no.:  44  Position   83.5913 , 189.36 
+
+Point no.:  45  Position   74.3046 , 198.269 
+
+Point no.:  46  Position   65.3046 , 182.269 
+
+Point no.:  47  Position   56.3046 , 180.269 
+
+Point no.:  48  Position   57.7696 , 169.425 
+
+Point no.:  49  Position   59.8858 , 154.019 
+
+Point no.:  50  Position   61.119 , 136.682 
+
+Point no.:  51  Position   62.7184 , 119.78 
+
+Point no.:  52  Position   64.3116 , 102.868 
+
+Point no.:  53  Position   55.3116 , 86.8677 
+
+Point no.:  54  Position   46.3116 , 84.8677 
+
+Point no.:  55  Position   48.1134 , 72.8078 
+
+Point no.:  56  Position   50.2003 , 57.2042 
+
+Point no.:  57  Position   41.2003 , 41.2042 
+
+Point no.:  58  Position   30 , 30 
+
+###################################
+###### ROOT NODE REACHED ##########
+###################################
