@@ -45,33 +45,34 @@ void MainWindow::on_startButton_clicked()
                 if (!rrtstar->obstacles->isSegmentInObstacle(newConfigPos, qNearest->position)) {
                     Node *qNew = new Node;
                     qNew->position = newConfigPos;
-                    qNew->orientation = newConfigPosOrient.z();
+                    qNew->orientation = 0.0 ; //newConfigPosOrient.z();  //extra
                     qNew->path = path;
 
                     vector<Node *> Qnear;
                     rrtstar->near(qNew->position, rrtstar->step_size*RRTSTAR_NEIGHBOR_FACTOR, Qnear);
                     qDebug() << "Found Nearby " << Qnear.size() << "\n";
                     Node *qMin = qNearest;
-                    double cmin = rrtstar->Cost(qNearest) + rrtstar->PathCost(qNearest, qNew);
+                    //double cmin = rrtstar->Cost(qNearest) + rrtstar->PathCost(qNearest, qNew);
                     for(int j = 0; j < Qnear.size(); j++){
                         Node *qNear = Qnear[j];
-                        if(!rrtstar->obstacles->isSegmentInObstacle(qNear->position, qNew->position) &&
-                                (rrtstar->Cost(qNear)+rrtstar->PathCost(qNear, qNew)) < cmin ){
-                            qMin = qNear; cmin = rrtstar->Cost(qNear)+rrtstar->PathCost(qNear, qNew);
+                        if(!rrtstar->obstacles->isSegmentInObstacle(qNear->position, qNew->position) ){ //&&
+                                //(rrtstar->Cost(qNear)+rrtstar->PathCost(qNear, qNew)) < cmin ){
+                            qMin = qNear;
+                            // cmin = rrtstar->Cost(qNear)+rrtstar->PathCost(qNear, qNew);
                         }
                     }
                     rrtstar->add(qMin, qNew);
 
                     for(int j = 0; j < Qnear.size(); j++){
                         Node *qNear = Qnear[j];
-                        if(!rrtstar->obstacles->isSegmentInObstacle(qNew->position, qNear->position) &&
-                                (rrtstar->Cost(qNew)+rrtstar->PathCost(qNew, qNear)) < rrtstar->Cost(qNear) ){
+                        if(!rrtstar->obstacles->isSegmentInObstacle(qNew->position, qNear->position)){ //&&
+                                //(rrtstar->Cost(qNew)+rrtstar->PathCost(qNew, qNear)) < rrtstar->Cost(qNear) ){
                             Node *qParent = qNear->parent;
                             // Remove edge between qParent and qNear
                             qParent->children.erase(std::remove(qParent->children.begin(), qParent->children.end(), qNear), qParent->children.end());
 
                             // Add edge between qNew and qNear
-                            qNear->cost = rrtstar->Cost(qNew) + rrtstar->PathCost(qNew, qNear);
+                            //qNear->cost = rrtstar->Cost(qNew) + rrtstar->PathCost(qNew, qNear);
                             qNear->parent = qNew;
                             qNew->children.push_back(qNear);
                         }
