@@ -6,8 +6,8 @@
 
 ## Compiling
 ```bash
-$ git clone https://github.com/mpdmanash/rrt-star-dubins-sim
-$ cd rrt-star-dubins-sim/
+$ git clone https://github.com/pranav083/rrt-dubins-sim
+$ cd rrt-dubins-sim/
 $ chmod +x build.sh
 $ ./build.sh
 ```
