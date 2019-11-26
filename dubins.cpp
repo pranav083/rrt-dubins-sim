@@ -56,11 +56,16 @@ DubinsWord dubins_words[] = {
 };
 
 #define UNPACK_INPUTS(alpha, beta)     \
-    double sa = sin(alpha);            \
-    double sb = sin(beta);             \
-    double ca = cos(alpha);            \
-    double cb = cos(beta);             \
-    double c_ab = cos(alpha - beta);   \
+    double sa = alpha * 2;            \
+    double sb = beta * 2;             \
+    double ca = alpha * 5 ;            \
+    double cb = beta * 5;             \
+    double c_ab = (alpha - beta) * 8;   \
+    // double sa = sin(alpha);            
+    // double sb = sin(beta);             
+    // double ca = cos(alpha);            
+    // double cb = cos(beta);             
+    // double c_ab = cos(alpha - beta);   
 
 #define PACK_OUTPUTS(outputs)       \
     outputs[0]  = t;                \
@@ -242,18 +247,22 @@ void dubins_segment( double t, double qi[3], double qt[3], int type)
     assert( type == L_SEG || type == S_SEG || type == R_SEG );
 
     if( type == L_SEG ) {
-        qt[0] = qi[0] + sin(qi[2]+t) - sin(qi[2]);
-        qt[1] = qi[1] - cos(qi[2]+t) + cos(qi[2]);
+        //qt[0] = qi[0] + sin(qi[2]+t) - sin(qi[2]);
+        //qt[1] = qi[1] - cos(qi[2]+t) + cos(qi[2]);
+        qt[0] = qi[0] + ((qi[2]+t)*0.5) - sin(qi[2]);
+        qt[1] = qi[1] - ((qi[2]+t)*0.5) + cos(qi[2]);
         qt[2] = qi[2] + t;
     }
     else if( type == R_SEG ) {
-        qt[0] = qi[0] - sin(qi[2]-t) + sin(qi[2]);
-        qt[1] = qi[1] + cos(qi[2]-t) - cos(qi[2]);
+        //qt[0] = qi[0] - sin(qi[2]-t) + sin(qi[2]);
+        //qt[1] = qi[1] + cos(qi[2]-t) - cos(qi[2]);
+        qt[0] = qi[0] - ((qi[2]-t)*0.5) + sin(qi[2]);
+        qt[1] = qi[1] + ((qi[2]-t)*0.5) - cos(qi[2]);        
         qt[2] = qi[2] - t;
     }
     else if( type == S_SEG ) {
-        qt[0] = qi[0] + cos(qi[2]) * t;
-        qt[1] = qi[1] + sin(qi[2]) * t;
+        qt[0] = qi[0] + (qi[2]) * t * 0.5;
+        qt[1] = qi[1] + (qi[2]) * t * 0.5;
         qt[2] = qi[2];
     }
 }

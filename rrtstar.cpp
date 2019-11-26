@@ -1,4 +1,6 @@
 #include "rrtstar.h"
+#include <stdio.h>
+
 
 RRTSTAR::RRTSTAR()
 {
@@ -14,8 +16,8 @@ RRTSTAR::RRTSTAR()
     root->cost = 0.0;
     lastNode = root;
     nodes.push_back(root);
-    step_size = 18;
-    max_iter = 3000;
+    step_size = 30;
+    max_iter = 300;
 }
 
 /**
@@ -26,7 +28,7 @@ void RRTSTAR::initialize()
     root = new Node;
     root->parent = NULL;
     root->position = startPos;
-    root->orientation = START_ORIENT;
+    root->orientation = 0.0;// START_ORIENT;
     root->cost = 0.0;
     lastNode = root;
     nodes.push_back(root);
@@ -111,7 +113,7 @@ Vector3f RRTSTAR::newConfig(Node *q, Node *qNearest)
     Vector2f intermediate = to - from;
     intermediate = intermediate / intermediate.norm();
     Vector2f pos = from + step_size * intermediate;
-    Vector3f ret(pos.x(), pos.y(), 0.0);
+    Vector3f ret(pos.x(), pos.y(), 0.0);      
     return ret;
 }
 
@@ -130,29 +132,8 @@ Vector3f RRTSTAR::newDubinConfig(Node *q, Node *qNearest, DubinsPath &path)
     dubins_init( q0, q1, turning_radius, &path);
     double qIntermediate[3] = {0};
     dubins_path_sample(&path, step_size, qIntermediate);
-    Vector3f ret (qIntermediate[0], -qIntermediate[1], qIntermediate[2]);
+    Vector3f ret (qIntermediate[0], -qIntermediate[1], qIntermediate[2]);  
     return ret;
-}
-
-/**
- * @brief Return trajectory cost.
- * @param q
- * @return
- */
-double RRTSTAR::Cost(Node *q)
-{
-    return q->cost;
-}
-
-/**
- * @brief Compute path cost.
- * @param qFrom
- * @param qTo
- * @return
- */
-double RRTSTAR::PathCost(Node *qFrom, Node *qTo)
-{
-    return distance(qTo->position, qFrom->position);
 }
 
 /**
@@ -163,10 +144,10 @@ double RRTSTAR::PathCost(Node *qFrom, Node *qTo)
 void RRTSTAR::add(Node *qNearest, Node *qNew)
 {
     qNew->parent = qNearest;
-    qNew->cost = qNearest->cost + PathCost(qNearest, qNew);
+    qNew->cost = 0.0 ; //qNearest->cost + PathCost(qNearest, qNew);
     qNearest->children.push_back(qNew);
     nodes.push_back(qNew);
-    lastNode = qNew;
+    lastNode = qNew;  
 }
 
 /**

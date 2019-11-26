@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 void MainWindow::on_startButton_clicked()
 {
+    int pos_count = 0;
     if (simulated) {
         ui->statusBox->setText(tr("Please reset!"));
         renderArea->update();
@@ -50,7 +51,7 @@ void MainWindow::on_startButton_clicked()
 
                     vector<Node *> Qnear;
                     rrtstar->near(qNew->position, rrtstar->step_size*RRTSTAR_NEIGHBOR_FACTOR, Qnear);
-                    qDebug() << "Found Nearby " << Qnear.size() << "\n";
+                    //qDebug() << "Found Nearby " << Qnear.size() << "\n";
                     Node *qMin = qNearest;
                     //double cmin = rrtstar->Cost(qNearest) + rrtstar->PathCost(qNearest, qNew);
                     for(int j = 0; j < Qnear.size(); j++){
@@ -65,6 +66,7 @@ void MainWindow::on_startButton_clicked()
 
                     for(int j = 0; j < Qnear.size(); j++){
                         Node *qNear = Qnear[j];
+
                         if(!rrtstar->obstacles->isSegmentInObstacle(qNew->position, qNear->position)){ //&&
                                 //(rrtstar->Cost(qNew)+rrtstar->PathCost(qNew, qNear)) < rrtstar->Cost(qNear) ){
                             Node *qParent = qNear->parent;
@@ -98,11 +100,22 @@ void MainWindow::on_startButton_clicked()
         q = rrtstar->nearest(rrtstar->endPos);
         ui->statusBox->setText(tr("Exceeded max iterations!"));
     }
+    qDebug() << "######################################";
+    qDebug() << "# POSITION BACK TRACKING STARTED RRT##";
+    qDebug() << "######################################";    
     // generate shortest path to destination.
     while (q != NULL) {
         rrtstar->path.push_back(q);
+
+        qDebug()<<"Point no.: " <<pos_count ++ << " Position  "<< q->position.x() <<"," <<q->position.y()<< "\n"; 
         q = q->parent;
+        
+        
     }
+    pos_count = 0;
+    qDebug() << "###################################";
+    qDebug() << "###### ROOT NODE REACHED ##########";
+    qDebug() << "###################################";
     renderArea->update();
 }
 

@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "qmainwindow": "cpp",
+        "qwidget": "cpp",
+        "qdebug": "cpp",
+        "qcolor": "cpp",
+        "random": "cpp",
+        "drawable": "cpp",
+        "image": "cpp"
+    }
+}

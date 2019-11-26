@@ -12,8 +12,8 @@ RRT::RRT()
     root->position = startPos;
     lastNode = root;
     nodes.push_back(root);
-    step_size = 3;
-    max_iter = 3000;
+    step_size = 30;
+    max_iter = 300;
 }
 
 /**
